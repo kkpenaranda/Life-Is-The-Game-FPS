@@ -41,7 +41,10 @@ public class ButtonOption : MonoBehaviour
      **/
     public void ChangeScene(string sceneName)
     {
-        FindObjectOfType<GameController>().SelectedAnimation = currentAnimation;
-        SceneManager.LoadScene(sceneName);
+        if (currentAnimation != null)
+        {
+            FindObjectOfType<GameController>().SelectedAnimation = currentAnimation;
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
