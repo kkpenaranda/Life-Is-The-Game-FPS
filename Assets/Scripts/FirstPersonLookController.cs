@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class FirstPersonLookController : MonoBehaviour
 {
-
+    /**
+     * Sensitivity of the mouse
+     **/
     private float sensitivity = 250f;
 
+    /**
+     * Value of the rotation in the x axis
+     **/
     private float xRotation = 0f;
 
+    /**
+     * Tranform of the main character
+     **/
     public Transform character;
-    
 
-    // Start is called before the first frame update
+    /**
+     * Hides the mouse for a better experience
+     * Start is called before the first frame update
+     **/
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
+    /**
+     * Allows to rotate the character in the x and y axis
+     * Update is called once per frame
+     **/
+
     void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 60f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
