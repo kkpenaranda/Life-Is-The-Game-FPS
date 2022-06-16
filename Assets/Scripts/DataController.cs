@@ -7,6 +7,9 @@ using UnityEngine;
  **/
 public class DataController : MonoBehaviour
 {
+    /**
+     * Animator of the 3D model
+     **/
     public Animator characterAnimator;
 
     // Start is called before the first frame update

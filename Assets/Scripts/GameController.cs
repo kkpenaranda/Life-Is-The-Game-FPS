@@ -12,7 +12,10 @@ public class GameController : MonoBehaviour
      **/
     public string SelectedAnimation = "";
 
-    // Start is called before the first frame update
+    /**
+     * Allows the GameObject to be mantain between scenes
+     * Start is called before the first frame update
+     **/
     void Start()
     {
         DontDestroyOnLoad(this);

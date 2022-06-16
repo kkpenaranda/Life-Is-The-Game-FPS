@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Controls the rotation of the 3D character to simulate a First Person Perspective
+ **/
 public class FirstPersonLookController : MonoBehaviour
 {
     /**
