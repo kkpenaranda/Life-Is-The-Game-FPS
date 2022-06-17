@@ -8,6 +8,8 @@ TagManager:
   - SpawnGun
   - CustomizedGun
   - CustomizedGunBullet
+  - Bomb
+  - Parabolic
   layers:
   - Default
   - TransparentFX

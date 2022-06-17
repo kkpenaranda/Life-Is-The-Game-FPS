@@ -18,8 +18,9 @@ public class BulletSpawner : MonoBehaviour
 
     public KeyCode key;
 
+    public bool parabolic;
+
     private bool didShoot = false;
-    private bool hitTarget = false;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -49,21 +50,22 @@ public class BulletSpawner : MonoBehaviour
     {
         GameObject initBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         initBullet.transform.SetParent(bullets);
+
+        if(parabolic) initBullet.GetComponent<Rigidbody>().velocity = transform.up * 50f;
+
         gameObject.GetComponent<AudioSource>().Play();
 
         Ray ray = new Ray(transform.position, -transform.right);
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layer))
         {
-            GameObject shoot = Instantiate(shootPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
+            GameObject shoot = Instantiate(shootPrefab, hit.point, Quaternion.identity);
             shoot.transform.SetParent(bullets);
 
-            hitTarget = true;
             Destroy(initBullet);
         }
         else
         {
-            hitTarget = false;
             Destroy(initBullet, autoDestructionTime);
         }
 
