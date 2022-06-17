@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public GameObject shootPrefab;
     public Transform bullets;
 
     private float counter = 0f;
-    private float autoDestructionTime = 5f;
-    public float chargeTime;
-    
-    public LayerMask layer;
-
-    public float maxDistance;
-
-    public KeyCode key;
-
-    public bool parabolic;
-
+    private float lifetime = 5f;
+    private float anchor = 50f;
     private bool didShoot = false;
+
+    public WeaponObject weapon;
+
+    private GameObject bulletPrefab;
+    private GameObject shootPrefab;        
+    private float chargeTime;
+    private LayerMask layer;
+    private float maxDistance;
+    private KeyCode key;
+    private bool parabolic;
+
+
+    private void Start()
+    {
+        LoadData();
+    }
+
+    void LoadData()
+    {
+        bulletPrefab = weapon.bulletPrefab;
+        shootPrefab = weapon.shootPrefab;
+        chargeTime = weapon.chargeTime;
+        layer = weapon.layer;
+        maxDistance = weapon.maxDistance;
+        key = weapon.key;
+        parabolic = weapon.parabolic;
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -51,7 +68,7 @@ public class BulletSpawner : MonoBehaviour
         GameObject initBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         initBullet.transform.SetParent(bullets);
 
-        if(parabolic) initBullet.GetComponent<Rigidbody>().velocity = transform.up * 50f;
+        if(parabolic) initBullet.GetComponent<Rigidbody>().velocity = transform.up * anchor;
 
         gameObject.GetComponent<AudioSource>().Play();
 
@@ -66,7 +83,7 @@ public class BulletSpawner : MonoBehaviour
         }
         else
         {
-            Destroy(initBullet, autoDestructionTime);
+            Destroy(initBullet, lifetime);
         }
 
     }

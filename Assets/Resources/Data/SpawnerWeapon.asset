@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99651dc353d25b4090e092d9701f6b9, type: 3}
+  m_Name: SpawnerWeapon
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 586878825559500428, guid: 197138a18ee37744caba455416d09007,
+    type: 3}
+  shootPrefab: {fileID: 7747608024026287706, guid: 583fac7ba3dbeb84d820091812c354a5,
+    type: 3}
+  chargeTime: 5
+  maxDistance: 200
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
+  key: 323
+  parabolic: 0
