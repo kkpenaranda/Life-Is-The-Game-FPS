@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
+    /**
+     * Velocity of the bullet when it's shot
+     **/
     public float speed;
 
-    // Update is called once per frame
+    /**
+     * Moves the bullet according to the speed
+     **/
     void Update()
     {
         transform.Translate(-speed, 0f, 0f);

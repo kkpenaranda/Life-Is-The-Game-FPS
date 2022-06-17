@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParabolicMovement : MonoBehaviour
-{
+{    
     LineRenderer lineRenderer;
 
-    // Number of points on the line
+    /**
+     * Total of points in line renderer
+     **/
     private int pointsNum = 65;
 
     void Start()
@@ -14,6 +16,9 @@ public class ParabolicMovement : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
+    /**
+     * Draws a line renderer in a parabolic form.
+     **/
 
     void Update()
     {
@@ -26,7 +31,10 @@ public class ParabolicMovement : MonoBehaviour
         for (float i = 0; i < pointsNum; i += 0.1f)
         {
             Vector3 newPoint = position0 + i * velocity0;
-            newPoint.y = position0.y + (velocity0.y * i )+ (-9.81f/ 2f * i * i);
+
+            //Formula of points in a parabola
+            // y = y0 + vy0 * time - (1/2) * g * time ^ 2            
+            newPoint.y = position0.y + (velocity0.y * i ) - (9.81f/ 2f * Mathf.Pow(i,2));
 
             listArc.Add(newPoint);
 

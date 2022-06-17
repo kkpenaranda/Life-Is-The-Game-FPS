@@ -4,29 +4,56 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
+    /**
+     * Parent of the instanciated bullets
+     **/
     public Transform bullets;
 
+    /**
+     * Counts the time
+     **/
     private float counter = 0f;
+
+    /**
+     * Time that a bullet will survive after it's shot
+     **/
     private float lifetime = 5f;
+
+    /**
+     * Arch of the parabola
+     **/
     private float anchor = 50f;
+
+    /**
+     * Recognizes if the weapon did a gunshot
+     **/
     private bool didShoot = false;
 
+    /**
+     * Scriptable object to load data
+     **/
     public WeaponObject weapon;
 
-    private GameObject bulletPrefab;
-    private GameObject shootPrefab;        
-    private float chargeTime;
+    /**
+     * Variables to assign data from scriptable object
+     **/
+    private GameObject bulletPrefab, shootPrefab;        
+    private float chargeTime, maxDistance;
     private LayerMask layer;
-    private float maxDistance;
     private KeyCode key;
     private bool parabolic;
 
-
+    /**
+     * Loads the data when the game starts
+     **/
     private void Start()
     {
         LoadData();
     }
 
+    /**
+     * Loads the data from the scriptable object
+     **/
     void LoadData()
     {
         bulletPrefab = weapon.bulletPrefab;
@@ -38,8 +65,10 @@ public class BulletSpawner : MonoBehaviour
         parabolic = weapon.parabolic;
     }
 
-
-    // Update is called once per frame
+    /**
+     * Allows to do a shoot 
+     * The weapon can be shoot after it is charged in the time defined
+     **/
     void FixedUpdate()
     {
         if(Input.GetKey(key))
@@ -63,6 +92,10 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    /**
+     * Instanciate the bullets when the weapon is shot and detects the collision if its necessary
+     * The bullet is destroyed after it hits the target, if it doesnt't hit a target, it will be destroyed after the lifetime.
+     **/
     void Shoot()
     {
         GameObject initBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
